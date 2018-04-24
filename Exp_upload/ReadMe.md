@@ -23,13 +23,15 @@ Using python code
 start Web service
 1. Using google service and start api
 	a.Sign in and create a project https://console.cloud.google.com/apis
-![image]<>
+![image]<https://github.com/Jwy-Leo/Tool/blob/master/Exp_upload/readme_images/1.png?raw=true>
 	b.start API google drive 
-![image]<>
+![image]<https://github.com/Jwy-Leo/Tool/blob/master/Exp_upload/readme_images/2.png?raw=true>
+![image]<https://github.com/Jwy-Leo/Tool/blob/master/Exp_upload/readme_images/3.png?raw=true>
 	c.start API google sheet
-![image]<>
+![image]<https://github.com/Jwy-Leo/Tool/blob/master/Exp_upload/readme_images/4.png?raw=true>
+![image]<https://github.com/Jwy-Leo/Tool/blob/master/Exp_upload/readme_images/5.png?raw=true>
 	d.download the authentication
-![image]<>
+![image]<https://github.com/Jwy-Leo/Tool/blob/master/Exp_upload/readme_images/6.png?raw=true>
 
 2. In your drive create a google sheet
 	a.create a sheet and name it
