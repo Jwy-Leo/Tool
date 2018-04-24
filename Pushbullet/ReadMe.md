@@ -7,5 +7,8 @@
 ![image](https://github.com/Jwy-Leo/Tool/blob/master/Pushbullet/readme_images/1.JPG?raw=true)
 
 	b.Get access
+	
+![image](https://github.com/Jwy-Leo/Tool/blob/master/Pushbullet/readme_images/2.JPG?raw=true)
+
 15 lines:
 	head=['Access-Token: Your Access past here']
