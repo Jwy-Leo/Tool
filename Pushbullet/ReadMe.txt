@@ -1,0 +1,5 @@
+1. Singup Pushbullet account (# https://www.pushbullet.com/)
+2. In your mobile phone install Pushbullet
+3. Add your pushbullet API access to Pushbullet.py 15 lines
+15 lines:
+	head=['Access-Token: Your Access past here']
