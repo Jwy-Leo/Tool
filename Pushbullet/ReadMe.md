@@ -4,7 +4,7 @@
 	
 	a.Setting 
 
-![image](https://github.com/Jwy-Leo/Tool/blob/master/Pushbullet/1.JPG?raw=true)
+![image](https://github.com/Jwy-Leo/Tool/blob/master/Pushbullet/readme_images/1.JPG?raw=true)
 
 	b.Get access
 15 lines:
