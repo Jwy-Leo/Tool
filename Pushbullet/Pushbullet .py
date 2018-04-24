@@ -1,3 +1,7 @@
+######################################
+######## Author : Jwy-Leo   ##########
+######## Date   : 2018/4/24 ##########
+######################################
 def trainfinish(title,message="Finish"):
     import pycurl as pyc
     try:
