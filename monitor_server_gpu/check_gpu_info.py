@@ -3,23 +3,34 @@ import cv2
 import argparse
 import subprocess
 import numpy as np
+import time
+import signal
+import curses
+def interrupted(signum, frame):
+    raise TimeoutError
+signal.signal(signal.SIGALRM, interrupted)
+
 #sense_usuage=500 # MB
 #update_intervel=5#300 #300 # 5 min
+
 def Arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("-C", "--sense_capability_usage", type=int, default=500, help="set a bounding of gpu active such as lower than 500MB is active")
     parser.add_argument("-S", "--update_second", type=int, default=300, help="set update gpu status frequency (second)")
     parser.add_argument("-F", "--server_file_path", type=str, default="config/observe_server_list.cfg", help="Read server list from file")
+    parser.add_argument("-DM", "--display_terminal", action="store_true")
     args = parser.parse_args()
     print(args)
     return args
 
 def main(args):
     readtext = open_server_list(args.server_file_path)
+    display_method = draw_gpu_info if not args.display_terminal else diplay_gpu_info
+
     while True:
         gpu_info_list = server_status_check(readtext, args.sense_capability_usage)
+        # gpu_info_list = [('hihi', []), ('haha', [])]
         if not draw_gpu_info(gpu_info_list, args.update_second): break
-        print("updating")
 
 def open_server_list(FilePath):
 
@@ -87,7 +98,43 @@ def draw_gpu_info(infos, update_second):
         return False
         #exit(0)
     #cv2.destroyAllWindows()
-    return True 
+    print("updating")
+    return True
+
+def display_gpu_info(infos, update_second):
+
+    date = time.strftime("%Y/%m/%d-%H:%M:%S") 
+    message = []
+    message.append("Sample server status @ time : {}".format(date))
+    for index_h, _info in enumerate(infos):
+        server_name, SV_status = _info
+        _signal = ", ".join(["o" if _status else "x" for _status in SV_status])
+        message.append("Server: {:20s}, GPU status: {:20s}".format(server_name, _signal))
+    message.append("Close press by q, wait for {} seconds".format(update_second))
+    message = "\n".join(message)
+    
+    key = input_char(message, update_second)
+    
+    if key is None:
+        return True
+
+    return False if key == ord("q") else True
+
+def input_char(message, timeout):
+    signal.alarm(timeout)
+    try:
+        win = curses.initscr()
+        win.addstr(0, 0, message)
+        while True:
+            ch = win.getch()
+            if ch in range(32, 127): break
+            time.sleep(0.05)
+    except:
+        ch = None
+    finally:
+        curses.endwin()
+    signal.alarm(0)
+    return ch
 
 if __name__ == "__main__":
     args = Arguments()
